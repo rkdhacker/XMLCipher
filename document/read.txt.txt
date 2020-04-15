@@ -1,0 +1,20 @@
+1. Key Management at apigee: Apigee maintains a key management service only for the API keys(API authentication keys). There is no out of the box solution to set up a custom key-management solution. However, apigee maintains an encrypted Key-Value store, which can be used to create a custom key management solution via an API. We can create an API which can be used to create new shared key, display the id of a currently active key, swap the keys etc. The underlying Key store will be the apigee's encrypted Key-Value store. It is not too complex to build, if our key management requirements are simple, we can deliver it within a week. 
+
+ 
+
+2. Encryption options at apigee: 
+
+ 
+
+AES encryption
+RSA or public/private key encryption
+Any other algorithm supported by Java - Blowfish, DES, 3DES
+JWE, XML encryption, shared-key based MLE encryption
+
+ 
+
+ Some of these solutions are available out of the box, or community developed, and some of them are built by us. AES, XML encryption, shared-key based MLE encryption and JWE are available for us to use, but we would be able to implement any encryption if there are Java libraries available to the encryption/decryption. The effort of implementing any custom encryption is approximately a week.
+
+ 
+
+If you want to use the existing SOAP services for ****, and enable message-level encryption on them (instead of developing new APIs), I guess the best option is to implement an XML encryption (please refer to page 32 of this document http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0.pdf)

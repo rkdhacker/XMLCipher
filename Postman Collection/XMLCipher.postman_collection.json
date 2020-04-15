@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "e0d3057c-e244-440c-86f0-c5fa56d9e605",
+		"name": "XMLCipher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Encrypt",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<order>\r\n  <customer customerNumber=\"0815A4711\">\r\n    <name>Michael Sonntag</name>\r\n    <address>\r\n      <street>Altenbergerstr. 69</street>\r\n      <ZIP>4040</ZIP>\r\n      <city>Linz</city>\r\n    </address>\r\n  </customer>\r\n  <articles>\r\n    <line>\r\n      <quantity unit=\"piece\">30</quantity>\r\n      <product productNumber=\"9907\">XML editing widget</product>\r\n      <price currency=\"EUR\">0.10</price>\r\n    </line>\r\n    <line>\r\n      <quantity unit=\"litre\">5</quantity>\r\n      <product productNumber=\"007\">Super juice</product>\r\n      <price currency=\"HUF\">500</price>\r\n    </line>\r\n  </articles>\r\n  <delivery>\r\n    <deliveryaddress>\r\n      <name>Michael Sonntag</name>\r\n      <address>\r\n        <street>Auf der Wies 18</street>\r\n      </address>\r\n    </deliveryaddress>\r\n  </delivery>\r\n  <payment type=\"CC\">\r\n    <creditcard issuer=\"Mastercard\">\r\n      <nameOnCard>Mag. Dipl.-Ing. Dr. Michael Sonntag</nameOnCard>\r\n      <number>5201 2345 6789 0123</number>\r\n      <expiryDate>2006-04-30</expiryDate>\r\n    </creditcard>\r\n  </payment>\r\n</order>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://earthport-test-dev.apigee.net/v1/xmlcipher/encrypt",
+					"protocol": "http",
+					"host": [
+						"earthport-test-dev",
+						"apigee",
+						"net"
+					],
+					"path": [
+						"v1",
+						"xmlcipher",
+						"encrypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decrypt",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "keybytes",
+						"value": "45da409dcb3723eaf23d10d051a116c10132131a61203168",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<xenc:EncryptedData xmlns:xenc=\"http://www.w3.org/2001/04/xmlenc#\" Type=\"http://www.w3.org/2001/04/xmlenc#Element\">\r\n    <xenc:EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#aes128-cbc\"/>\r\n    <ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">\r\n        <xenc:EncryptedKey>\r\n            <xenc:EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#kw-tripledes\"/>\r\n            <xenc:CipherData>\r\n                <xenc:CipherValue>FtfjS1IZj4qcEDOt6XyWrf6wEVizeyDix7IgsjhQ5Ms=</xenc:CipherValue>\r\n            </xenc:CipherData>\r\n        </xenc:EncryptedKey>\r\n    </ds:KeyInfo>\r\n    <xenc:CipherData>\r\n        <xenc:CipherValue>ki2VQ/Z8jJdXMP80GXRKczjTaHNE5Mom6IvBCBJRlpMNVuVZoPuyk28BFSc5DwNJOgrxklTXozIW\r\nutiIRxsF2ydU0Y1NTwSdYqQckOm+/soj46NltYFh0mNE4ib4qZqEkgx6j4nl8iDrKbY1Q2Q0YY9O\r\nD7DN3y92DTlYdHZvilqrhX0iHgQqoYPr0/wXYvG78vdhWkqsS/Ux1/BgxDmQDf75BiAeQCelGGV6\r\npT3JlMccGRCnucGW0T9zmeWuztUm7BnHp6IdZ0/3QHWb+bfMLeEWY1CUwbUEFwLfBD0WhlBklRoF\r\n2BL07z4GXFWRCTzM1EuYwpZFxT/y+sTH0gyFCKb6QRQ4QNOB4tW62VJoEHET0xbF8eQ16OZxgL44\r\nxWpzMvlWXFE0w3ZuqGm213fOJtcN9uIhN79j8ACVpZXzO+0fUXN1b7yQ8hoKojp2mfS9BKFBKX5x\r\nS4vyTkekcuK6eCSp1R72aQdit7hdpontfa4nsni4MBEHF2bsIyp4uOghJjwp7AiBNn0qzJuTMBpV\r\nCWbHpa1I8cIjsB8SAmRSEjOCVwHK8/SYSYcypAhbV2rtl0sea/RLmtjjx7XLJ1usYkB9QdvVw2oA\r\nsVnx+JMuTV4zjDOP3/KLfzfvdv7+nak69f7hWhWnVvoBzun/1mbWEWifN0kf6meH7E75UQHkhFjB\r\na99pIaYB6bq2lmefpJ5dR8Mr/EDSB4djLLLQDnD8LGd6OJ99h5nGvz+s2N8TMjesAak1AZxSUCU0\r\noD5Y/Aw9PVqVNCXLpgKuk9Gi3EezUIetmUzSJu/3cUn+taRS7q5CKhRvNReFLNf2XzznHOY0vxAN\r\n9POnxHibjzINdvmfkUmTQ7rgAlTaXzITwh5UayWpp/zpEXKnhuC713AOzAr0NZkUokOJvja+LJmS\r\nbKBzq9CSvHIPR0bboqPvgyKdPbx14/QW8+V0CHSxEupXCK80qZ4ySKGQA/PHR+L9/JA6jzdxUxHc\r\niidM8lJP2ixEiHIwLPDLeRMJNQZOEsuxZsaYWBcBqOenK+2cx9QM31LKZshjocMio0ScvTk+yldS\r\nIJooJQyGnoEoLZdUTPGQj06pU7z08zCAwgi06CfbMUav4tg2+01tV//vlmMrGji0nux8KL8nAwBa\r\n4WVk+A66Ik7RLibvKiapfyNdiz6Qz6Rn1vBRem6n+umfs8GHsiJ2AFa7NFpeIgLj60dTeBAQ6Aqi\r\nX2V7lTYpe4ZOUxPvUtJV0VDVcjb55GH/wLyLOYBRjpAwLzUVwChJQmEJ4LyIEBzqZCsY2a2IfYEi\r\n2SzRaEJVd4Th94sNrE+5AZ1g9UrY8NeZzeNiX3aA6MFLWFgMWOT9sfR38RblK4lERfCk59rMsQ==</xenc:CipherValue>\r\n    </xenc:CipherData>\r\n</xenc:EncryptedData>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://earthport-test-dev.apigee.net/v1/xmlcipher/decrypt",
+					"protocol": "http",
+					"host": [
+						"earthport-test-dev",
+						"apigee",
+						"net"
+					],
+					"path": [
+						"v1",
+						"xmlcipher",
+						"decrypt"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": []
+}
